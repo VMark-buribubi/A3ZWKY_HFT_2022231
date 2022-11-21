@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace A3ZWKY_HFT_2022231.Models
 {
@@ -16,5 +17,15 @@ namespace A3ZWKY_HFT_2022231.Models
         public string Color { get; set; }
         public int FloorArea { get; set; }
         public string Address { get; set; }
+        public ICollection<Person> Persons { get;set; }
+
+        public House()
+        {
+            this.Persons = new HashSet<Person>();
+        }
+        public override string ToString()
+        {
+            return $"{HouseId} - {Color} - {FloorArea} - {Address}";
+        }
     }
 }

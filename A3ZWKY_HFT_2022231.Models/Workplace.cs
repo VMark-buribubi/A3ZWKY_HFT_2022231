@@ -17,5 +17,10 @@ namespace A3ZWKY_HFT_2022231.Models
         public string Type { get; set; }
         public int TelephoneNumber { get; set; }
         public string Address { get; set; }
+
+        public override string ToString()
+        {
+            return $"{WorkplaceId} - {Name} - {Type} - {TelephoneNumber} - {Address}";
+        }
     }
 }

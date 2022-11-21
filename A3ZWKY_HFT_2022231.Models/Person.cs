@@ -17,5 +17,10 @@ namespace A3ZWKY_HFT_2022231.Models
         public int Age { get; set; }
         public string Gender { get; set; }
         public DateTime BirthDate { get; set; }
+        public virtual House House { get; set; }
+        public override string ToString()
+        {
+            return $"{PersonId} - {Name} - {Age} - {Gender} - {BirthDate}";
+        }
     }
 }
