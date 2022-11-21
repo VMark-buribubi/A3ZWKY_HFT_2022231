@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace A3ZWKY_HFT_2022231.Models
 {
-    [Table("House")]
-    public class House
+    [Table("Workplace")]
+    public class Workplace
     {
         [Key]
-        public int HouseId { get; set; }
-        public string Color { get; set; }
-        public int FloorArea { get; set; }
+        public int WorkplaceId { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public int TelephoneNumber { get; set; }
         public string Address { get; set; }
     }
 }
