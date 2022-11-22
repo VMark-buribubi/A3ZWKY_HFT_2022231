@@ -8,29 +8,32 @@ namespace A3ZWKY_HFT_2022231.Repository
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {
+        protected MainDbContext ctx;
+
+        public Repository(MainDbContext ctx)
+        {
+            this.ctx = ctx;
+        }
+
         public void Create(T item)
         {
-            throw new NotImplementedException();
+            ctx.Set<T>().Add(item);
+            ctx.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            ctx.Set<T>().Remove(Read(id));
+            ctx.SaveChanges();
         }
-
-        public T Read(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IQueryable<T> ReadAll()
         {
-            throw new NotImplementedException();
+            return ctx.Set<T>();
         }
 
-        public void Update(T item)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract T Read(int id);
+        public abstract void Update(T item);
+
+
     }
 }

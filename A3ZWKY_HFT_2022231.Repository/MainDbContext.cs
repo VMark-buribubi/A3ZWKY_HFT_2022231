@@ -10,7 +10,7 @@ using System.Globalization;
 
 namespace A3ZWKY_HFT_2022231.Repository
 {
-    internal class MainDbContext : DbContext
+    public class MainDbContext : DbContext
     {
         public DbSet<Person> Persons { get; set; }
         public DbSet<House> Houses { get; set; }
