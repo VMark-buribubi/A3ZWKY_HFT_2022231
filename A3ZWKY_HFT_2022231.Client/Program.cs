@@ -11,11 +11,12 @@ namespace A3ZWKY_HFT_2022231.Client
         {
             Console.WriteLine("Hello World!");
 
-            MainDbContext ctx = new MainDbContext();
+            IRepository<Person> repo = new PersonRepository(new MainDbContext());
 
-            var items = ctx.Work.ToArray();
+            var items = repo.ReadAll().ToArray();
 
             ;
+
         }
     }
 }

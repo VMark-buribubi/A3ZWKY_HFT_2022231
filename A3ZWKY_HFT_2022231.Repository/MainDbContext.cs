@@ -61,7 +61,7 @@ namespace A3ZWKY_HFT_2022231.Repository
                     }},
                 new House(){HouseId = 5, Color = "Brown", FloorArea = 140, Address = "1001 Cipő utca 5.", Persons = {
                     new Person(){PersonId = 7, Name = "Domokos Dezső", Age = 60, Gender = "Male", BirthDate = new DateTime(1960,02,12)},
-                    new Person(){PersonId = 9, Name = "Bíró Kinga", Age = 55, Gender = "Female", BirthDate = new DateTime(1965,13,18)},
+                    new Person(){PersonId = 9, Name = "Bíró Kinga", Age = 55, Gender = "Female", BirthDate = new DateTime(1965,03,18)},
                     }},
                 new House(){HouseId = 6, Color = "White", FloorArea = 165, Address = "1001 Cipő utca 6.", Persons = {
                     new Person(){PersonId = 10, Name = "Papp Tamás", Age = 22, Gender = "Male", BirthDate = new DateTime(1998,04,27)}
@@ -86,7 +86,7 @@ namespace A3ZWKY_HFT_2022231.Repository
                 new Person(){PersonId = 6, Name = "Nagy Eszter", Age = 26, Gender = "Female", BirthDate = new DateTime(1994,09,09)},
                 new Person(){PersonId = 7, Name = "Domokos Dezső", Age = 60, Gender = "Male", BirthDate = new DateTime(1960,02,12)},
                 new Person(){PersonId = 8, Name = "Keresztes Anikó", Age = 28, Gender = "Female", BirthDate = new DateTime(1992,01,21)},
-                new Person(){PersonId = 9, Name = "Bíró Kinga", Age = 55, Gender = "Female", BirthDate = new DateTime(1965,13,18)},
+                new Person(){PersonId = 9, Name = "Bíró Kinga", Age = 55, Gender = "Female", BirthDate = new DateTime(1965,03,18)},
                 new Person(){PersonId = 10, Name = "Papp Tamás", Age = 22, Gender = "Male", BirthDate = new DateTime(1998,04,27)}
             };
 

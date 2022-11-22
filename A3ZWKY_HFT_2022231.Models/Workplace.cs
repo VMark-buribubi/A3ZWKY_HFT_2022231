@@ -17,7 +17,7 @@ namespace A3ZWKY_HFT_2022231.Models
         public string Type { get; set; }
         public string TelephoneNumber { get; set; }
         public string Address { get; set; }
-        public Person Persons { get; set; }
+        public virtual Person Persons { get; set; }
 
         public override string ToString()
         {

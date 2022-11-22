@@ -17,7 +17,7 @@ namespace A3ZWKY_HFT_2022231.Models
         public string Color { get; set; }
         public int FloorArea { get; set; }
         public string Address { get; set; }
-        public ICollection<Person> Persons { get;set; }
+        public virtual ICollection<Person> Persons { get;set; }
 
         public House()
         {
