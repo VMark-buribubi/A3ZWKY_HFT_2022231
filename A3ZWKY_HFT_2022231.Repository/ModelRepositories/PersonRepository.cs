@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace A3ZWKY_HFT_2022231.Repository.ModelRepositories
+namespace A3ZWKY_HFT_2022231.Repository
 {
     public class PersonRepository : Repository<Person>, IRepository<Person>
     {
