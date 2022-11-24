@@ -19,6 +19,8 @@ namespace A3ZWKY_HFT_2022231.Models
         public DateTime BirthDate { get; set; }
         public virtual House House { get; set; }
         public virtual Workplace Workplace { get; set; }
+        public int HouseId { get; set; }
+        public int? WorkplaceId { get; set; }
         public override string ToString()
         {
             return $"{PersonId} - {Name} - {Age} - {Gender} - {BirthDate}";

@@ -11,9 +11,22 @@ namespace A3ZWKY_HFT_2022231.Client
         {
             Console.WriteLine("Hello World!");
 
-            IRepository<Person> repo = new PersonRepository(new MainDbContext());
+            //IRepository<Person> repo = new PersonRepository(new MainDbContext());
 
-            var items = repo.ReadAll().ToArray();
+            //Person a = new Person()
+            //{
+            //    Name = "Fasszopo"
+            //};
+
+            //repo.Create(a);
+
+            //var another = repo.Read(1);
+            //another.Name = "Sanyi";
+            //repo.Update(another);
+
+
+
+            //var items = repo.ReadAll().ToArray();
 
             ;
 
