@@ -13,11 +13,13 @@ namespace A3ZWKY_HFT_2022231.Logic
     {
         IRepository<Person> personRepo;
         IRepository<House> houseRepo;
+        IRepository<Workplace> workplaceRepo;
 
-        public PersonLogic(IRepository<Person> personRepo, IRepository<House> houseRepo)
+        public PersonLogic(IRepository<Person> personRepo, IRepository<House> houseRepo, IRepository<Workplace> workplaceRepo)
         {
             this.personRepo = personRepo;
             this.houseRepo = houseRepo;
+            this.workplaceRepo = workplaceRepo;
         }
 
         public void Create(Person item)
@@ -26,17 +28,17 @@ namespace A3ZWKY_HFT_2022231.Logic
             {
                 throw new ArgumentException("Name is null.");
             }
-            this.personRepo.Create(item);
+            personRepo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.personRepo.Delete(id);
+            personRepo.Delete(id);
         }
 
         public Person Read(int id)
         {
-            var person = this.personRepo.Read(id);
+            var person = personRepo.Read(id);
             if (person == null)
             {
                 throw new ArgumentException("Person does not exist");
@@ -46,12 +48,12 @@ namespace A3ZWKY_HFT_2022231.Logic
 
         public IQueryable<Person> ReadAll()
         {
-            return this.personRepo.ReadAll();
+            return personRepo.ReadAll();
         }
 
         public void Update(Person item)
         {
-            this.personRepo.Update(item);
+            personRepo.Update(item);
         }
 
         public IEnumerable<string> WhoLivesWhere()

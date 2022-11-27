@@ -36,12 +36,14 @@ namespace A3ZWKY_HFT_2022231.Repository
             mod.Entity<Person>()
                 .HasOne(x => x.House)
                 .WithMany(x => x.Persons)
-                .HasForeignKey(x => x.HouseId);
+                .HasForeignKey(x => x.HouseId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             mod.Entity<Person>()
                 .HasOne(x => x.Workplace)
                 .WithMany(x => x.Persons)
-                .HasForeignKey(x => x.WorkplaceId);
+                .HasForeignKey(x => x.WorkplaceId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             var Houses = new List<House>()
             {

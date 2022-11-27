@@ -10,15 +10,55 @@ namespace A3ZWKY_HFT_2022231.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
+            Console.WriteLine("Te vagy a legjobb! Meg tudod csinálni!");
 
             var ctx = new MainDbContext();
+
             var personRepo = new PersonRepository(ctx);
             var houseRepo = new HouseRepository(ctx);
-            var personLogic = new PersonLogic(personRepo, houseRepo);
+            var workplaceRepo = new WorkplaceRepository(ctx);
 
-            var items = personLogic.WhoLivesWhere();
+            var personLogic = new PersonLogic(personRepo, houseRepo, workplaceRepo);
+            var houseLogic = new HouseLogic(houseRepo);
+            var workplaceLogic = new WorkplaceLogic(workplaceRepo);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Person p = new Person()
+            //{
+            //    PersonId = 10,
+            //    Name = "",
+            //};
+
+            //personLogic.Create(p);
+
+            //var items = personLogic.WhoLivesWhere();
 
 
             //Person a = new Person()
@@ -32,13 +72,7 @@ namespace A3ZWKY_HFT_2022231.Client
             //another.Name = "Sanyi";
             //repo.Update(another);
 
-
-
             //var items = repo.ReadAll().ToArray();
-
-
-
-            ;
 
         }
     }
