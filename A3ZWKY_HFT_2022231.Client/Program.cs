@@ -1,4 +1,5 @@
-﻿using A3ZWKY_HFT_2022231.Models;
+﻿using A3ZWKY_HFT_2022231.Logic;
+using A3ZWKY_HFT_2022231.Models;
 using A3ZWKY_HFT_2022231.Repository;
 using System;
 using System.Linq;
@@ -11,7 +12,14 @@ namespace A3ZWKY_HFT_2022231.Client
         {
             Console.WriteLine("Hello World!");
 
-            //IRepository<Person> repo = new PersonRepository(new MainDbContext());
+
+            var ctx = new MainDbContext();
+            var personRepo = new PersonRepository(ctx);
+            var houseRepo = new HouseRepository(ctx);
+            var personLogic = new PersonLogic(personRepo, houseRepo);
+
+            var items = personLogic.WhoLivesWhere();
+
 
             //Person a = new Person()
             //{
@@ -27,6 +35,8 @@ namespace A3ZWKY_HFT_2022231.Client
 
 
             //var items = repo.ReadAll().ToArray();
+
+
 
             ;
 
