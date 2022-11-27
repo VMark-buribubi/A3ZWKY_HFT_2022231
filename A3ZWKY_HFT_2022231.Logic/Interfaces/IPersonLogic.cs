@@ -10,7 +10,7 @@ namespace A3ZWKY_HFT_2022231.Logic
         void Delete(int id);
         Person Read(int id);
         IQueryable<Person> ReadAll();
-        void Update(Person item);
+        void Update(Person item, int personId);
         IEnumerable<string> WhoLivesWhere();
     }
 }

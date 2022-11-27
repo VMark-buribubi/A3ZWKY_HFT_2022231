@@ -51,7 +51,7 @@ namespace A3ZWKY_HFT_2022231.Logic
             return personRepo.ReadAll();
         }
 
-        public void Update(Person item)
+        public void Update(Person item, int personId)
         {
             personRepo.Update(item);
         }
@@ -88,6 +88,5 @@ namespace A3ZWKY_HFT_2022231.Logic
         {
             return null;
         }
-
     }
 }
