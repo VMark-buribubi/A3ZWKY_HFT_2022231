@@ -68,7 +68,6 @@ namespace A3ZWKY_HFT_2022231.Logic
 
             return linq1;
         }
-
         public IEnumerable<string> asd2()
         {
             return null;
