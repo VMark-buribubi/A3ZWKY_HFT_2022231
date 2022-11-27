@@ -17,8 +17,9 @@ namespace A3ZWKY_HFT_2022231.Logic
             this.workplaceRepo = workplaceRepo;
         }
 
-        public void Create(Workplace item)
+        public void Create(Workplace item, int workplaceId)
         {
+            item.WorkplaceId = workplaceId;
             if (string.IsNullOrEmpty(item.Address))
             {
                 throw new ArgumentException("Address is null.");
@@ -46,8 +47,9 @@ namespace A3ZWKY_HFT_2022231.Logic
             return workplaceRepo.ReadAll();
         }
 
-        public void Update(Workplace item)
+        public void Update(Workplace item, int workplaceId)
         {
+            item.WorkplaceId = workplaceId;
             workplaceRepo.Update(item);
         }
     }

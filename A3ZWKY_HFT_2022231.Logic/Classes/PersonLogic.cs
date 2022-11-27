@@ -53,6 +53,7 @@ namespace A3ZWKY_HFT_2022231.Logic
 
         public void Update(Person item, int personId)
         {
+            item.PersonId = personId;
             personRepo.Update(item);
         }
 

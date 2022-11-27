@@ -17,8 +17,9 @@ namespace A3ZWKY_HFT_2022231.Logic
             houseRepo = repo;
         }
 
-        public void Create(House item)
+        public void Create(House item, int houseId)
         {
+            item.HouseId = houseId;
             if (item.Address.Length < 6)
             {
                 throw new ArgumentException("Address is too short.");
@@ -50,8 +51,9 @@ namespace A3ZWKY_HFT_2022231.Logic
             return houseRepo.ReadAll();
         }
 
-        public void Update(House item)
+        public void Update(House item, int houseId)
         {
+            item.HouseId = houseId;
             houseRepo.Update(item);
         }
     }

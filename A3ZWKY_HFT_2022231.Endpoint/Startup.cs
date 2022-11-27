@@ -36,7 +36,7 @@ namespace A3ZWKY_HFT_2022231.Endpoint
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "IUE7VU_HFT_2022231.Endpoint", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "A3ZWKY_HFT_2022231.Endpoint", Version = "v1" });
             });
         }
 
@@ -47,7 +47,12 @@ namespace A3ZWKY_HFT_2022231.Endpoint
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "A3ZWKY_HFT_2022231.Endpoint v1"));
+                app.UseSwaggerUI(c => 
+                {
+                    //c.RoutePrefix = "/api";
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "A3ZWKY_HFT_2022231.Endpoint v1");
+                });
+                
             }
             app.UseExceptionHandler(c => c.Run(async context =>
             {
@@ -66,6 +71,7 @@ namespace A3ZWKY_HFT_2022231.Endpoint
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
             });
         }
     }
