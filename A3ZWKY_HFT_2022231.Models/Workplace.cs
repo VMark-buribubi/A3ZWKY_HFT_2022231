@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace A3ZWKY_HFT_2022231.Models
@@ -17,6 +18,7 @@ namespace A3ZWKY_HFT_2022231.Models
         public string Type { get; set; }
         public string TelephoneNumber { get; set; }
         public string Address { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Person> Persons { get; set; }
         public Workplace()
         {

@@ -38,7 +38,7 @@ namespace A3ZWKY_HFT_2022231.Endpoint
             return this.logic.ReadAll();
         }
 
-        [HttpPut("/persons/{personId}")]
+        [HttpPut("/houses/{houseId}")]
         public void Update([FromBody] House item, [FromRoute] int houseId)
         {
             this.logic.Update(item, houseId);
