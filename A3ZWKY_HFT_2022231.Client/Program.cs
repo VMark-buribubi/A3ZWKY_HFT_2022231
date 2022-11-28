@@ -106,14 +106,80 @@ namespace A3ZWKY_HFT_2022231.Client
             }
             static void Update(string entity)
             {
-                Console.WriteLine(entity + " update");
-                Console.ReadLine();
+            Console.Write($"Enter a {entity}'s id to update: ");
+            int id = int.Parse(Console.ReadLine());
+            if (entity == "House")
+            {
+                House one = houseLogic.Read(id);
+                Console.Write($"Set New color [old: {one.Color}]: ");
+                string color = Console.ReadLine();
+                Console.Write($"Set New rloor area [old: {one.FloorArea}]: ");
+                int floorArea = int.Parse(Console.ReadLine());
+                Console.Write($"Set New Number of seats: [old: {one.Address}] ");
+                string address = Console.ReadLine();
+
+                one.Color = color;
+                one.FloorArea = floorArea;
+                one.Address = address;
+                houseLogic.Update(one, id);
             }
+            else if (entity == "Workplace")
+            {
+                Workplace one = workplaceLogic.Read(id);
+                Console.Write($"Set New Name [old: {one.Name}]: ");
+                string name = Console.ReadLine();
+                Console.Write($"Set New Type: [old: {one.Type}]");
+                string type = Console.ReadLine();
+                Console.Write($"Set New Telephone Number: [old: {one.TelephoneNumber}]");
+                string telephoneNumber = Console.ReadLine();
+                Console.Write($"Set New Address: [old: {one.Address}]");
+                string address = Console.ReadLine();
+
+                one.Name = name;
+                one.Type = type;
+                one.TelephoneNumber = telephoneNumber;
+                one.Address = address;
+                workplaceLogic.Update(one, id);
+            }
+            else if (entity == "Person")
+            {
+                Person one = personLogic.Read(id);
+                Console.Write($"New name [old: {one.Name}]: ");
+                string name = Console.ReadLine();
+                Console.Write($"New age [old: {one.Age}]: ");
+                int age = int.Parse(Console.ReadLine());
+                Console.Write($"New Gender [old: {one.Gender}]: ");
+                string gender = Console.ReadLine();
+                Console.Write($"New BirthDate [old: {one.BirthDate}]: ");
+                DateTime birthDate = DateTime.Parse(Console.ReadLine());
+
+                one.Name = name;
+                one.Age = age;
+                one.Gender = gender;
+                one.BirthDate = birthDate;
+                personLogic.Update(one, id);
+            }
+
+            Console.WriteLine($"{entity.ToUpper()} UPDATED!");
+            Console.Write("Now you can continue by pressing ENTER!");
+            Console.ReadLine();
+        }
             static void Delete(string entity)
             {
-                Console.WriteLine(entity + " delete");
-                Console.ReadLine();
-            }
+            Console.Write($"Enter a {entity}'s id to delete: ");
+            int id = int.Parse(Console.ReadLine());
+
+            if (entity == "Person")
+            personLogic.Delete(id);
+            if (entity == "House")
+                personLogic.Delete(id);
+            if (entity == "Workplace")
+                personLogic.Delete(id);
+
+            Console.WriteLine($"\n{entity.ToUpper()} DELETED!");
+            Console.Write("Now you can continue by pressing ENTER!");
+            Console.ReadLine();
+        }
             static void Main(string[] args)
             {
                 Console.WriteLine("Te vagy a legjobb! Meg tudod csinálni!");
