@@ -63,20 +63,30 @@ namespace A3ZWKY_HFT_2022231.Logic
             var everyPerson = personRepo.ReadAll();
             var everyHouse = houseRepo.ReadAll();
 
-            var linq1 = from x in everyPerson
-                        join house in everyHouse
-                        on x.HouseId equals house.HouseId
-                        select x.Name + " - " + house.Address;
+            return  from x in everyPerson
+                    join house in everyHouse
+                    on x.HouseId equals house.HouseId
+                    select x.Name + " - " + house.Address;
 
-            return linq1;
         }
-        public IEnumerable<string> asd2()
+        public IEnumerable<string> MostPersonLivesInOneHouse()
         {
-
+            var everyPerson = personRepo.ReadAll();
+            var everyHouse = houseRepo.ReadAll();
             return null;
+            
+
+
+            //var linq1 = from x in everyHouse
+            //            join person in everyPerson
+            //            on x.HouseId equals person.HouseId
+            //            where 
+            //            select 
+
+
         }
 
-        public IEnumerable<string> asd3()
+        public IEnumerable<string> WhereLivesGipszJakab()
         {
             return null;
         }
