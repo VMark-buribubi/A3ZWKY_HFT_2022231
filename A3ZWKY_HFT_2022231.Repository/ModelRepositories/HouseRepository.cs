@@ -23,7 +23,14 @@ namespace A3ZWKY_HFT_2022231.Repository
             var old = Read(item.HouseId);
             foreach (var prop in old.GetType().GetProperties())
             {
-                prop.SetValue(old, prop.GetValue(item));
+                try
+                {
+                    prop.SetValue(old, prop.GetValue(item));
+                }
+                catch (Exception)
+                {
+                }
+                
             }
             ctx.SaveChanges();
         }

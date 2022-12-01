@@ -15,30 +15,30 @@ namespace A3ZWKY_HFT_2022231.Endpoint
         {
             this.logic = logic;
         }
-        [HttpPost("/persons")]
+        [HttpPost("/person")]
         public void Create([FromBody] Person item)
         {
             this.logic.Create(item);
         }
-        [HttpDelete("/persons/{personId}")]
-        public void Delete([FromRoute] int id)
+        [HttpDelete("/person/{personId}")]
+        public void Delete([FromRoute] int personId)
         {
-            this.logic.Delete(id);
+            this.logic.Delete(personId);
         }
 
-        [HttpGet("/persons/{personId}")]
-        public Person Read([FromRoute] int id)
+        [HttpGet("/person/{personId}")]
+        public Person Read([FromRoute] int personId)
         {
-            return this.logic.Read(id);
+            return this.logic.Read(personId);
         }
 
-        [HttpGet("/persons")]
+        [HttpGet("/person")]
         public IQueryable<Person> ReadAll()
         {
             return this.logic.ReadAll();
         }
 
-        [HttpPut("/persons/{personId}")]
+        [HttpPut("/person/{personId}")]
         public void Update([FromBody] Person item, [FromRoute] int personId)
         {
             this.logic.Update(item, personId);

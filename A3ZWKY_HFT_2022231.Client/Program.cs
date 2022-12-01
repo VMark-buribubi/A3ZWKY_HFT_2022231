@@ -1,8 +1,7 @@
-﻿using A3ZWKY_HFT_2022231.Logic;
-using A3ZWKY_HFT_2022231.Models;
-using A3ZWKY_HFT_2022231.Repository;
+﻿using A3ZWKY_HFT_2022231.Models;
 using ConsoleTools;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography;
@@ -11,62 +10,49 @@ namespace A3ZWKY_HFT_2022231.Client
 {
     class Program
     {
-        static PersonLogic personLogic;
-        static HouseLogic houseLogic;
-        static WorkplaceLogic workplaceLogic;
+        static RestService rest;
         static void Create(string entity)
         {
             if (entity == "Person")
             {
+                Person person = new Person();
                 Console.Write("Create a new Person!\nEnter the person's details: \n");
                 Console.WriteLine("Enter the person's name:\n");
-                string name = Console.ReadLine();
+                person.Name = Console.ReadLine();
                 Console.WriteLine("\nEnter the person's age:\n");
-                int age = int.Parse(Console.ReadLine());
+                person.Age = int.Parse(Console.ReadLine());
                 Console.WriteLine("\nEnter the person's gender:\n");
-                string gender = Console.ReadLine();
+                person.Gender = Console.ReadLine();
                 Console.WriteLine("\nEnter the person's birthdate(yyyy.mm.dd):\n");
-                DateTime birthDate = DateTime.Parse(Console.ReadLine());
+                person.BirthDate = DateTime.Parse(Console.ReadLine());
 
-                personLogic.Create(new Person() { Name = name, Age = age, Gender = gender, BirthDate = birthDate });
+                rest.Post(person, "/person");
             }
             else if (entity == "House")
             {
+                House house = new House();
                 Console.Write("Create a new House!\nEnter the house's details: \n");
-                Console.WriteLine("Enter the house's id:\n");
-                int houseId = int.Parse(Console.ReadLine());
-                if (houseId <= 6)
-                {
-                    Random rnd = new Random();
-                    houseId = rnd.Next(7, 100);
-                }
                 Console.WriteLine("Enter the house's color:\n");
-                string color = Console.ReadLine();
+                house.Color = Console.ReadLine();
                 Console.WriteLine("\nEnter the house's floor area:\n");
-                int floorArea = int.Parse(Console.ReadLine());
+                house.FloorArea = int.Parse(Console.ReadLine());
                 Console.WriteLine("\nEnter the house's address:\n");
-                string address = Console.ReadLine();
-                houseLogic.Create(new House() { HouseId = houseId, Color = color, FloorArea = floorArea, Address = address }, houseId);
+                house.Address = Console.ReadLine();
+                rest.Post(house, "/house");
             }
             else if (entity == "Workplace")
             {
+                Workplace workplace = new Workplace();
                 Console.Write("Create a new Workplace!\nEnter the workplace's details: \n");
-                Console.WriteLine("Enter the workplace's id:\n");
-                int workplaceId = int.Parse(Console.ReadLine());
-                if (workplaceId <= 4)
-                {
-                    Random rnd = new Random();
-                    workplaceId = rnd.Next(5, 100);
-                }
                 Console.WriteLine("Enter the workplace's name:\n");
-                string name = Console.ReadLine();
+                workplace.Name = Console.ReadLine();
                 Console.WriteLine("\nEnter the workplace's type:\n");
-                string type = Console.ReadLine();
+                workplace.Type = Console.ReadLine();
                 Console.WriteLine("\nEnter the workplace's telephone number:\n");
-                string telephoneNumber = Console.ReadLine();
+                workplace.TelephoneNumber = Console.ReadLine();
                 Console.WriteLine("\nEnter the workplace's address\n");
-                string address = Console.ReadLine();
-                workplaceLogic.Create(new Workplace() { WorkplaceId = workplaceId, Name = name, Type = type, TelephoneNumber = telephoneNumber, Address = address }, workplaceId);
+                workplace.Address = Console.ReadLine();
+                rest.Post(workplace, "/workplace");
             }
             Console.WriteLine($"\n{entity.ToUpper()} CREATED!");
             Console.Write("Now you can continue by pressing ENTER!");
@@ -77,7 +63,7 @@ namespace A3ZWKY_HFT_2022231.Client
             {
                 if (entity == "Person")
                 {
-                    var items = personLogic.ReadAll();
+                    List<Person> items = rest.Get<Person>("/person");
                     Console.WriteLine("Id" + "\t" + "Name".PadRight(17) + "Age" + "\t" + "Gender" + "\t" + "BirthDate");
                     foreach (var item in items)
                     {
@@ -86,7 +72,7 @@ namespace A3ZWKY_HFT_2022231.Client
                 }
                 else if (entity == "House")
                 {
-                    var items = houseLogic.ReadAll();
+                    List<House> items = rest.Get<House>("/house");
                     Console.WriteLine("Id" + "\t" + "Color" + "\t" + "FloorArea".PadRight(11) + "Address");
                     foreach (var item in items)
                     {
@@ -95,7 +81,7 @@ namespace A3ZWKY_HFT_2022231.Client
                 }
                 else if (entity == "Workplace")
                 {
-                    var items = workplaceLogic.ReadAll();
+                    List<Workplace> items = rest.Get<Workplace>("/workplace");
                     Console.WriteLine("Id" + "\t" + "Name".PadRight(24) + "Type".PadRight(10) + "\t" + "TelephoneNumber".PadRight(18) + "Address");
                     foreach (var item in items)
                     {
@@ -110,7 +96,7 @@ namespace A3ZWKY_HFT_2022231.Client
             int id = int.Parse(Console.ReadLine());
             if (entity == "House")
             {
-                House one = houseLogic.Read(id);
+                House one = rest.Get<House>(id, "/house");
                 Console.Write($"Set New color [old: {one.Color}]: ");
                 string color = Console.ReadLine();
                 Console.Write($"Set New rloor area [old: {one.FloorArea}]: ");
@@ -121,29 +107,29 @@ namespace A3ZWKY_HFT_2022231.Client
                 one.Color = color;
                 one.FloorArea = floorArea;
                 one.Address = address;
-                houseLogic.Update(one, id);
+                rest.Put(one, $"/house/{id}");
             }
             else if (entity == "Workplace")
             {
-                Workplace one = workplaceLogic.Read(id);
+                Workplace one = rest.Get<Workplace>(id, "/workplace");
                 Console.Write($"Set New Name [old: {one.Name}]: ");
                 string name = Console.ReadLine();
-                Console.Write($"Set New Type: [old: {one.Type}]");
+                Console.Write($"Set New Type: [old: {one.Type}]: ");
                 string type = Console.ReadLine();
-                Console.Write($"Set New Telephone Number: [old: {one.TelephoneNumber}]");
+                Console.Write($"Set New Telephone Number: [old: {one.TelephoneNumber}]: ");
                 string telephoneNumber = Console.ReadLine();
-                Console.Write($"Set New Address: [old: {one.Address}]");
+                Console.Write($"Set New Address: [old: {one.Address}]: ");
                 string address = Console.ReadLine();
 
                 one.Name = name;
                 one.Type = type;
                 one.TelephoneNumber = telephoneNumber;
                 one.Address = address;
-                workplaceLogic.Update(one, id);
+                rest.Put(one, $"/workplace/{id}");
             }
             else if (entity == "Person")
             {
-                Person one = personLogic.Read(id);
+                Person one = rest.Get<Person>(id, "/person");
                 Console.Write($"New name [old: {one.Name}]: ");
                 string name = Console.ReadLine();
                 Console.Write($"New age [old: {one.Age}]: ");
@@ -157,9 +143,8 @@ namespace A3ZWKY_HFT_2022231.Client
                 one.Age = age;
                 one.Gender = gender;
                 one.BirthDate = birthDate;
-                personLogic.Update(one, id);
+                rest.Put(one, $"/person/{id}");
             }
-
             Console.WriteLine($"{entity.ToUpper()} UPDATED!");
             Console.Write("Now you can continue by pressing ENTER!");
             Console.ReadLine();
@@ -170,11 +155,11 @@ namespace A3ZWKY_HFT_2022231.Client
             int id = int.Parse(Console.ReadLine());
 
             if (entity == "Person")
-            personLogic.Delete(id);
+                rest.Delete(id, $"/person");
             if (entity == "House")
-                personLogic.Delete(id);
+                rest.Delete(id, $"/house");
             if (entity == "Workplace")
-                personLogic.Delete(id);
+                rest.Delete(id, $"/workplace");
 
             Console.WriteLine($"\n{entity.ToUpper()} DELETED!");
             Console.Write("Now you can continue by pressing ENTER!");
@@ -184,15 +169,7 @@ namespace A3ZWKY_HFT_2022231.Client
             {
                 Console.WriteLine("Te vagy a legjobb! Meg tudod csinálni!");
 
-                var ctx = new MainDbContext();
-
-                var personRepo = new PersonRepository(ctx);
-                var houseRepo = new HouseRepository(ctx);
-                var workplaceRepo = new WorkplaceRepository(ctx);
-
-                personLogic = new PersonLogic(personRepo, houseRepo, workplaceRepo);
-                houseLogic = new HouseLogic(houseRepo);
-                workplaceLogic = new WorkplaceLogic(workplaceRepo);
+                rest = new RestService("http://localhost:38606", "/swagger/index.html");
 
 
                 var personSubMenu = new ConsoleMenu(args, level: 1)

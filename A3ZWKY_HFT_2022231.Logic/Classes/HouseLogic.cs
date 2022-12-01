@@ -19,7 +19,6 @@ namespace A3ZWKY_HFT_2022231.Logic
 
         public void Create(House item, int houseId)
         {
-            item.HouseId = houseId;
             if (item.Address.Length < 6)
             {
                 throw new ArgumentException("Address is too short.");
@@ -28,6 +27,8 @@ namespace A3ZWKY_HFT_2022231.Logic
             {
                 throw new ArgumentException("Address is null.");
             }
+            item.HouseId = houseId;
+            item.HouseId = IdGeneratorUtil.GenerateId();
             houseRepo.Create(item);
         }
 

@@ -19,11 +19,12 @@ namespace A3ZWKY_HFT_2022231.Logic
 
         public void Create(Workplace item, int workplaceId)
         {
-            item.WorkplaceId = workplaceId;
             if (string.IsNullOrEmpty(item.Address))
             {
                 throw new ArgumentException("Address is null.");
             }
+            item.WorkplaceId = workplaceId;
+            item.WorkplaceId = IdGeneratorUtil.GenerateId();
             workplaceRepo.Create(item);
         }
 

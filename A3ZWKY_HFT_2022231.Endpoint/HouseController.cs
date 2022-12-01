@@ -21,24 +21,24 @@ namespace A3ZWKY_HFT_2022231.Endpoint
             this.logic.Create(item,houseId);
         }
         [HttpDelete("/house/{houseId}")]
-        public void Delete([FromRoute] int id)
+        public void Delete([FromRoute] int houseId)
         {
-            this.logic.Delete(id);
+            this.logic.Delete(houseId);
         }
 
-        [HttpGet("/houses/{houseId}")]
-        public House Read([FromRoute] int id)
+        [HttpGet("/house/{houseId}")]
+        public House Read([FromRoute] int houseId)
         {
-            return this.logic.Read(id);
+            return this.logic.Read(houseId);
         }
 
-        [HttpGet("/houses")]
+        [HttpGet("/house")]
         public IQueryable<House> ReadAll()
         {
             return this.logic.ReadAll();
         }
 
-        [HttpPut("/houses/{houseId}")]
+        [HttpPut("/house/{houseId}")]
         public void Update([FromBody] House item, [FromRoute] int houseId)
         {
             this.logic.Update(item, houseId);

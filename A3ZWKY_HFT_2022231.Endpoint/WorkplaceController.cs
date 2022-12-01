@@ -15,30 +15,30 @@ namespace A3ZWKY_HFT_2022231.Endpoint
         {
             this.logic = logic;
         }
-        [HttpPost("/workplaces")]
+        [HttpPost("/workplace")]
         public void Create([FromBody] Workplace item, [FromRoute] int workplaceId)
         {
             this.logic.Create(item, workplaceId);
         }
         [HttpDelete("/workplace/{workplaceId}")]
-        public void Delete([FromRoute] int id)
+        public void Delete([FromRoute] int workplaceId)
         {
-            this.logic.Delete(id);
+            this.logic.Delete(workplaceId);
         }
 
-        [HttpGet("/workplaces/{workplaceId}")]
-        public Workplace Read([FromRoute] int id)
+        [HttpGet("/workplace/{workplaceId}")]
+        public Workplace Read([FromRoute] int workplaceId)
         {
-            return this.logic.Read(id);
+            return this.logic.Read(workplaceId);
         }
 
-        [HttpGet("/workplaces")]
+        [HttpGet("/workplace")]
         public IQueryable<Workplace> ReadAll()
         {
             return this.logic.ReadAll();
         }
 
-        [HttpPut("/workplaces/{workplaceId}")]
+        [HttpPut("/workplace/{workplaceId}")]
         public void Update([FromBody] Workplace item, [FromRoute] int workplaceId)
         {
             this.logic.Update(item, workplaceId);

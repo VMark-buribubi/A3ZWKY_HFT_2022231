@@ -28,6 +28,7 @@ namespace A3ZWKY_HFT_2022231.Logic
             {
                 throw new ArgumentException("Name is null.");
             }
+            item.PersonId = IdGeneratorUtil.GenerateId();
             personRepo.Create(item);
         }
 
