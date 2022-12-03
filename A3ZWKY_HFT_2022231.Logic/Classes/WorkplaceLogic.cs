@@ -53,5 +53,18 @@ namespace A3ZWKY_HFT_2022231.Logic
             item.WorkplaceId = workplaceId;
             workplaceRepo.Update(item);
         }
+        public IEnumerable<Workplace> GetWorkplacesWithAtleast2Workers()
+        {
+            var everyWorkplace = workplaceRepo.ReadAll();
+
+            return everyWorkplace.Where(w => w.Persons.Count() == 2);
+        }
+
+        public IEnumerable<Workplace> GetWorkplacesWhereOldPeopleWork()
+        {
+            var everyWorkplace = workplaceRepo.ReadAll();
+
+            return everyWorkplace.Where(w => w.Persons.Any(p => p.Age > 50));
+        }
     }
 }

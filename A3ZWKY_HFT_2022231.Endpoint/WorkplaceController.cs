@@ -1,6 +1,7 @@
 ﻿using A3ZWKY_HFT_2022231.Logic;
 using A3ZWKY_HFT_2022231.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace A3ZWKY_HFT_2022231.Endpoint
@@ -42,6 +43,18 @@ namespace A3ZWKY_HFT_2022231.Endpoint
         public void Update([FromBody] Workplace item, [FromRoute] int workplaceId)
         {
             this.logic.Update(item, workplaceId);
+        }
+
+        [HttpGet("/workplace/min2workers")]
+        public IEnumerable<Workplace> GetWorkplacesWithAtleast2Workers()
+        {
+            return this.logic.GetWorkplacesWithAtleast2Workers();
+        }
+
+        [HttpGet("/workplace/oldpeoplework")]
+        public IEnumerable<Workplace> GetWorkplacesWhereOldPeopleWork()
+        {
+            return this.logic.GetWorkplacesWhereOldPeopleWork();
         }
     }
 }

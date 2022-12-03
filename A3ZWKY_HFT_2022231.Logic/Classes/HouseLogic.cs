@@ -57,5 +57,13 @@ namespace A3ZWKY_HFT_2022231.Logic
             item.HouseId = houseId;
             houseRepo.Update(item);
         }
+
+        public IEnumerable<House> GetHousesWithMostPersons()
+        {
+            var everyHouse = houseRepo.ReadAll();
+            int max = everyHouse.Max(h => h.Persons.Count());
+
+            return everyHouse.Where(h => h.Persons.Count() == max);
+        }
     }
 }

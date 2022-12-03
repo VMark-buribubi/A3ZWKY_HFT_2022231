@@ -67,7 +67,7 @@ namespace A3ZWKY_HFT_2022231.Client
                     Console.WriteLine("Id" + "\t" + "Name".PadRight(17) + "Age" + "\t" + "Gender" + "\t" + "BirthDate");
                     foreach (var item in items)
                     {
-                        Console.WriteLine(item.PersonId + "\t" + item.Name.PadRight(17) + item.Age + "\t" + item.Gender + "\t" + item.BirthDate);
+                        Console.WriteLine(item.PersonId + "\t" + item.Name.PadRight(17) + item.Age + "\t" + item.Gender + "\t" + item.BirthDate + item.House.Address);
                     }
                 }
                 else if (entity == "House")

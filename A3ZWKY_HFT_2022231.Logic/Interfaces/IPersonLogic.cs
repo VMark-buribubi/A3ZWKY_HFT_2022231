@@ -11,6 +11,8 @@ namespace A3ZWKY_HFT_2022231.Logic
         Person Read(int id);
         IQueryable<Person> ReadAll();
         void Update(Person item, int personId);
-        IEnumerable<string> WhoLivesWhere();
+        IEnumerable<Person> GetPersonsWhoLiveInRedHouse();
+        IEnumerable<Person> GetPersonsWhoWorkAtBakery();
+        
     }
 }

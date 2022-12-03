@@ -1,6 +1,7 @@
 ﻿using A3ZWKY_HFT_2022231.Logic;
 using A3ZWKY_HFT_2022231.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace A3ZWKY_HFT_2022231.Endpoint
@@ -42,6 +43,12 @@ namespace A3ZWKY_HFT_2022231.Endpoint
         public void Update([FromBody] House item, [FromRoute] int houseId)
         {
             this.logic.Update(item, houseId);
+        }
+
+        [HttpGet("/house/mostpersons")]
+        public IEnumerable<House> GetHousesWithMostPersons()
+        {
+            return this.logic.GetHousesWithMostPersons();
         }
     }
 }

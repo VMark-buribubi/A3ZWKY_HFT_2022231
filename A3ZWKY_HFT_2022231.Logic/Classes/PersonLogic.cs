@@ -6,20 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using A3ZWKY_HFT_2022231.Models;
 using A3ZWKY_HFT_2022231.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace A3ZWKY_HFT_2022231.Logic
 {
     public class PersonLogic : IPersonLogic
     {
         IRepository<Person> personRepo;
-        IRepository<House> houseRepo;
-        IRepository<Workplace> workplaceRepo;
 
-        public PersonLogic(IRepository<Person> personRepo, IRepository<House> houseRepo, IRepository<Workplace> workplaceRepo)
+        public PersonLogic(IRepository<Person> personRepo)
         {
             this.personRepo = personRepo;
-            this.houseRepo = houseRepo;
-            this.workplaceRepo = workplaceRepo;
         }
 
         public void Create(Person item)
@@ -58,47 +55,18 @@ namespace A3ZWKY_HFT_2022231.Logic
             personRepo.Update(item);
         }
 
-        public IEnumerable<string> WhoLivesWhere()
+        public IEnumerable<Person> GetPersonsWhoLiveInRedHouse()
         {
             var everyPerson = personRepo.ReadAll();
-            var everyHouse = houseRepo.ReadAll();
 
-            return  from x in everyPerson
-                    join house in everyHouse
-                    on x.HouseId equals house.HouseId
-                    select x.Name + " - " + house.Address;
+            return everyPerson.Where(p => p.House.Color == "Red");
 
         }
-        public IEnumerable<string> MostPersonLivesInOneHouse()
+
+        public IEnumerable<Person> GetPersonsWhoWorkAtBakery()
         {
             var everyPerson = personRepo.ReadAll();
-            var everyHouse = houseRepo.ReadAll();
-            return null;
-            
-
-
-            //var linq1 = from x in everyHouse
-            //            join person in everyPerson
-            //            on x.HouseId equals person.HouseId
-            //            where 
-            //            select 
-
-
-        }
-
-        public IEnumerable<string> WhereLivesGipszJakab()
-        {
-            return null;
-        }
-
-        public IEnumerable<string> asd4()
-        {
-            return null;
-        }
-
-        public IEnumerable<string> asd5()
-        {
-            return null;
+            return everyPerson.Where(p => p.Workplace.Type == "Pékség");
         }
     }
 }

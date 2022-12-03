@@ -1,6 +1,7 @@
 ﻿using A3ZWKY_HFT_2022231.Logic;
 using A3ZWKY_HFT_2022231.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace A3ZWKY_HFT_2022231.Endpoint
@@ -43,5 +44,18 @@ namespace A3ZWKY_HFT_2022231.Endpoint
         {
             this.logic.Update(item, personId);
         }
+
+        [HttpGet("/person/redhouse")]
+        public IEnumerable<Person> GetPersonsWhoLiveInRedHouse()
+        {
+            return this.logic.GetPersonsWhoLiveInRedHouse();
+        }
+
+        [HttpGet("/person/bakeryworkers")]
+        public IEnumerable<Person> GetPersonsWhoWorkAtBakery()
+        {
+            return this.logic.GetPersonsWhoWorkAtBakery();
+        }
+
     }
 }

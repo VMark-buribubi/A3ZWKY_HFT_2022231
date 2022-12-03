@@ -1,4 +1,5 @@
 ﻿using A3ZWKY_HFT_2022231.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace A3ZWKY_HFT_2022231.Logic
@@ -10,5 +11,6 @@ namespace A3ZWKY_HFT_2022231.Logic
         House Read(int id);
         IQueryable<House> ReadAll();
         void Update(House item, int houseId);
+        IEnumerable<House> GetHousesWithMostPersons();
     }
 }
