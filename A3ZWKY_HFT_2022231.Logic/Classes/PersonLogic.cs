@@ -58,14 +58,14 @@ namespace A3ZWKY_HFT_2022231.Logic
         public IEnumerable<Person> GetPersonsWhoLiveInRedHouse()
         {
             var everyPerson = personRepo.ReadAll();
-
             return everyPerson.Where(p => p.House.Color == "Red");
         }
 
         public IEnumerable<Person> GetPersonsWhoWorkAtButchery()
         {
             var everyPerson = personRepo.ReadAll();
-            return everyPerson.Where(p => p.Workplace.Type == "Hentes");
+
+            return everyPerson.Where(p => (p.Workplace == null ? "" : p.Workplace.Type) == "Hentes");
         }
     }
 }

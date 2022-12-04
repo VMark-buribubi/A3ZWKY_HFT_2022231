@@ -20,9 +20,10 @@ namespace A3ZWKY_HFT_2022231.Test
         Mock<IRepository<Person>> mockPersonRepo;
         Mock<IRepository<House>> mockHouseRepo;
         Mock<IRepository<Workplace>> mockWorkplaceRepo;
+
         static List<House> houses = new List<House>()
             {
-                new House() { HouseId = 1, Color = "Yellow", FloorArea = 200, Address = "1001 Cipő utca 1.", Persons = 
+                new House() { HouseId = 1, Color = "Yellow", FloorArea = 200, Address = "1001 Cipő utca 1.", Persons =
                     {
                         new Person(){PersonId = 1, Name = "Kiss János", Age = 20, Gender = "Male", BirthDate = new DateTime(2000,05,25), HouseId = 1, WorkplaceId = 1},
                         new Person(){PersonId = 4, Name = "Édes Anna", Age = 20, Gender = "Female", BirthDate = new DateTime(2000,04,02), HouseId = 1, WorkplaceId = 1}
@@ -115,7 +116,7 @@ namespace A3ZWKY_HFT_2022231.Test
                     Persons =
                     {
                          new Person(){PersonId = 2, Name = "Köves Béla", Age = 30, Gender = "Male", BirthDate = new DateTime(1990,10,12), HouseId = 2, WorkplaceId = 4 },
-                          new Person(){PersonId = 10, Name = "Papp Tamás", Age = 22, Gender = "Male", BirthDate = new DateTime(1998,04,27), HouseId = 6, WorkplaceId = 4 }
+                         new Person(){PersonId = 10, Name = "Papp Tamás", Age = 22, Gender = "Male", BirthDate = new DateTime(1998,04,27), HouseId = 6, WorkplaceId = 4 }
                     }}
             };
 
@@ -155,7 +156,7 @@ namespace A3ZWKY_HFT_2022231.Test
             var actual = personLogic.GetPersonsWhoWorkAtButchery();
             var expected = new List<Person>()
             {
-               new Person(){PersonId = 1, Name = "Kiss János", Age = 20, Gender = "Male", BirthDate = new DateTime(2000,05,25), HouseId = 1, WorkplaceId = 1 },
+               new Person(){PersonId = 1, Name = "Kiss János", Age = 20, Gender = "Male", BirthDate = new DateTime(2000,05,25), HouseId = 1, WorkplaceId = 1},
                new Person(){PersonId = 4, Name = "Édes Anna", Age = 20, Gender = "Female", BirthDate = new DateTime(2000,04,02), HouseId = 1, WorkplaceId = 1}
             };
             Assert.AreEqual(expected, actual);
