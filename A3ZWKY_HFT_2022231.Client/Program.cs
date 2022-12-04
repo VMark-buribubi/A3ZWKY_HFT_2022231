@@ -99,9 +99,9 @@ namespace A3ZWKY_HFT_2022231.Client
                 House one = rest.Get<House>(id, "/house");
                 Console.Write($"Set New color [old: {one.Color}]: ");
                 string color = Console.ReadLine();
-                Console.Write($"Set New rloor area [old: {one.FloorArea}]: ");
+                Console.Write($"Set New floor area [old: {one.FloorArea}]: ");
                 int floorArea = int.Parse(Console.ReadLine());
-                Console.Write($"Set New Number of seats: [old: {one.Address}] ");
+                Console.Write($"Set New Address: [old: {one.Address}] ");
                 string address = Console.ReadLine();
 
                 one.Color = color;
