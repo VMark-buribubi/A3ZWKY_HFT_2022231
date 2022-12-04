@@ -51,10 +51,10 @@ namespace A3ZWKY_HFT_2022231.Endpoint
             return this.logic.GetPersonsWhoLiveInRedHouse();
         }
 
-        [HttpGet("/person/bakeryworkers")]
-        public IEnumerable<Person> GetPersonsWhoWorkAtBakery()
+        [HttpGet("/person/butcheryworkers")]
+        public IEnumerable<Person> GetPersonsWhoWorkAtButchery()
         {
-            return this.logic.GetPersonsWhoWorkAtBakery();
+            return this.logic.GetPersonsWhoWorkAtButchery();
         }
 
     }

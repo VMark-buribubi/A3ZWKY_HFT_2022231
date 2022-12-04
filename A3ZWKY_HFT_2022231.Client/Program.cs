@@ -59,39 +59,39 @@ namespace A3ZWKY_HFT_2022231.Client
             Console.ReadLine();
         }
 
-            static void List(string entity)
+        static void List(string entity)
+        {
+            if (entity == "Person")
             {
-                if (entity == "Person")
+                List<Person> items = rest.Get<Person>("/person");
+                Console.WriteLine("Id" + "\t" + "Name".PadRight(17) + "Age" + "\t" + "Gender" + "\t" + "BirthDate");
+                foreach (var item in items)
                 {
-                    List<Person> items = rest.Get<Person>("/person");
-                    Console.WriteLine("Id" + "\t" + "Name".PadRight(17) + "Age" + "\t" + "Gender" + "\t" + "BirthDate");
-                    foreach (var item in items)
-                    {
-                        Console.WriteLine(item.PersonId + "\t" + item.Name.PadRight(17) + item.Age + "\t" + item.Gender + "\t" + item.BirthDate + item.House.Address);
-                    }
+                    Console.WriteLine(item.PersonId + "\t" + item.Name.PadRight(17) + item.Age + "\t" + item.Gender + "\t" + item.BirthDate);
                 }
-                else if (entity == "House")
-                {
-                    List<House> items = rest.Get<House>("/house");
-                    Console.WriteLine("Id" + "\t" + "Color" + "\t" + "FloorArea".PadRight(11) + "Address");
-                    foreach (var item in items)
-                    {
-                        Console.WriteLine(item.HouseId + "\t" + item.Color + "\t" + item.FloorArea + "\t".PadRight(4) + item.Address);
-                    }
-                }
-                else if (entity == "Workplace")
-                {
-                    List<Workplace> items = rest.Get<Workplace>("/workplace");
-                    Console.WriteLine("Id" + "\t" + "Name".PadRight(24) + "Type".PadRight(10) + "\t" + "TelephoneNumber".PadRight(18) + "Address");
-                    foreach (var item in items)
-                    {
-                        Console.WriteLine(item.WorkplaceId + "\t" + item.Name.PadRight(20) + "\t" + item.Type.PadRight(10) + "\t" + item.TelephoneNumber.PadRight(18) + item.Address);
-                    }
-                }
-                Console.ReadLine();
             }
-            static void Update(string entity)
+            else if (entity == "House")
             {
+                List<House> items = rest.Get<House>("/house");
+                Console.WriteLine("Id" + "\t" + "Color" + "\t" + "FloorArea".PadRight(11) + "Address");
+                foreach (var item in items)
+                {
+                    Console.WriteLine(item.HouseId + "\t" + item.Color + "\t" + item.FloorArea + "\t".PadRight(4) + item.Address);
+                }
+            }
+            else if (entity == "Workplace")
+            {
+                List<Workplace> items = rest.Get<Workplace>("/workplace");
+                Console.WriteLine("Id" + "\t" + "Name".PadRight(24) + "Type".PadRight(10) + "\t" + "TelephoneNumber".PadRight(18) + "Address");
+                foreach (var item in items)
+                {
+                    Console.WriteLine(item.WorkplaceId + "\t" + item.Name.PadRight(20) + "\t" + item.Type.PadRight(10) + "\t" + item.TelephoneNumber.PadRight(18) + item.Address);
+                }
+            }
+            Console.ReadLine();
+        }
+        static void Update(string entity)
+        {
             Console.Write($"Enter a {entity}'s id to update: ");
             int id = int.Parse(Console.ReadLine());
             if (entity == "House")
@@ -149,8 +149,8 @@ namespace A3ZWKY_HFT_2022231.Client
             Console.Write("Now you can continue by pressing ENTER!");
             Console.ReadLine();
         }
-            static void Delete(string entity)
-            {
+        static void Delete(string entity)
+        {
             Console.Write($"Enter a {entity}'s id to delete: ");
             int id = int.Parse(Console.ReadLine());
 
@@ -165,7 +165,62 @@ namespace A3ZWKY_HFT_2022231.Client
             Console.Write("Now you can continue by pressing ENTER!");
             Console.ReadLine();
         }
-            static void Main(string[] args)
+
+        static void GetPersonsWhoLiveInRedHouse()
+        {
+            List<Person> items = rest.Get<Person>("/person/redhouse");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Name);
+            }
+            Console.Write("\nNow you can continue by pressing ENTER!");
+            Console.ReadLine();
+        }
+
+        static void GetPersonsWhoWorkAtButchery()
+        {
+            List<Person> items = rest.Get<Person>("/person/butcheryworkers");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Name);
+            }
+            Console.Write("\nNow you can continue by pressing ENTER!");
+            Console.ReadLine();
+        }
+
+        static void GetHousesWithMostPersons()
+        {
+            List<House> items = rest.Get<House>("/house/mostpersons");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Address + "\t" + item.Persons.Count);
+            }
+            Console.Write("\nNow you can continue by pressing ENTER!");
+            Console.ReadLine();
+        }
+
+        static void GetWorkplacesWithAtleast2Workers()
+        {
+            List<Workplace> items = rest.Get<Workplace>("/workplace/min2workers");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Address + "\t" + item.Persons.Count);
+                    
+            }
+            Console.Write("\nNow you can continue by pressing ENTER!");
+            Console.ReadLine();
+        }
+        static void GetWorkplacesWhereOldPeopleWork()
+        {
+            List<Workplace> items = rest.Get<Workplace>("/workplace/oldpeoplework");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Address + "\t" + item.Persons.Count);
+            }
+            Console.Write("\nNow you can continue by pressing ENTER!");
+            Console.ReadLine();
+        }
+        static void Main(string[] args)
             {
                 Console.WriteLine("Te vagy a legjobb! Meg tudod csinálni!");
 
@@ -193,10 +248,19 @@ namespace A3ZWKY_HFT_2022231.Client
                     .Add("Update", () => Update("Workplace"))
                     .Add("Exit", ConsoleMenu.Close);
 
-                var menu = new ConsoleMenu(args, level: 0)
+                var nonCrudSubMenu = new ConsoleMenu(args, level: 1)
+                    .Add("List every person who lives in red house\n", () => GetPersonsWhoLiveInRedHouse())
+                    .Add("List every person who work at butchery\n", () => GetPersonsWhoWorkAtButchery())
+                    .Add("List every house where most people live\n", () => GetHousesWithMostPersons())
+                    .Add("List every workplace where atleast 2 person works\n", () => GetWorkplacesWithAtleast2Workers())
+                    .Add("List every workplace where atleast one 50 year old person works\n", () => GetWorkplacesWhereOldPeopleWork())
+                    .Add("Return", ConsoleMenu.Close);
+
+            var menu = new ConsoleMenu(args, level: 0)
                     .Add("Persons", () => personSubMenu.Show())
                     .Add("Houses", () => houseSubMenu.Show())
                     .Add("Workplaces", () => workplaceSubMenu.Show())
+                    .Add("Non-Cruds", () => nonCrudSubMenu.Show())
                     .Add("Exit", ConsoleMenu.Close);
 
                 menu.Show();

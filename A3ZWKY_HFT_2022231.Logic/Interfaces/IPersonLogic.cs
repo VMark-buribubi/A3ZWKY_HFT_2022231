@@ -12,7 +12,7 @@ namespace A3ZWKY_HFT_2022231.Logic
         IQueryable<Person> ReadAll();
         void Update(Person item, int personId);
         IEnumerable<Person> GetPersonsWhoLiveInRedHouse();
-        IEnumerable<Person> GetPersonsWhoWorkAtBakery();
+        IEnumerable<Person> GetPersonsWhoWorkAtButchery();
         
     }
 }

@@ -60,13 +60,12 @@ namespace A3ZWKY_HFT_2022231.Logic
             var everyPerson = personRepo.ReadAll();
 
             return everyPerson.Where(p => p.House.Color == "Red");
-
         }
 
-        public IEnumerable<Person> GetPersonsWhoWorkAtBakery()
+        public IEnumerable<Person> GetPersonsWhoWorkAtButchery()
         {
             var everyPerson = personRepo.ReadAll();
-            return everyPerson.Where(p => p.Workplace.Type == "Pékség");
+            return everyPerson.Where(p => p.Workplace.Type == "Hentes");
         }
     }
 }

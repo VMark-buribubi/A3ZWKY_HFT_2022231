@@ -27,7 +27,7 @@ namespace A3ZWKY_HFT_2022231.Repository
             {
                 builder
                     .UseLazyLoadingProxies()
-                    .UseInMemoryDatabase("Database");
+                    .UseSqlite(@"Data Source=.\MainContext.db;");
             }
         }
 
@@ -74,7 +74,7 @@ namespace A3ZWKY_HFT_2022231.Repository
                 new Workplace(){WorkplaceId = 1, Name = "Búzási Hentes", Type = "Hentes", TelephoneNumber = "20/2836493", Address = "1001 Zokni utca 21.",},
                 new Workplace(){WorkplaceId = 2, Name = "Friss Pékség", Type = "Pékség", TelephoneNumber = "70/3456224", Address = "1001 Zokni utca 12.",},
                 new Workplace(){WorkplaceId = 3, Name = "Talpaló Cipészet", Type = "Cipészet", TelephoneNumber = "30/4957464", Address = "1001 Zokni utca 32.",},
-                new Workplace(){WorkplaceId = 4, Name = "Napsugár Hipermarket", Type = "Hipermarket", TelephoneNumber = "20/1249867", Address = "1001 Zokni utca 7.",},
+                new Workplace(){WorkplaceId = 4, Name = "Napsugár Hipermarket", Type = "Hipermarket", TelephoneNumber = "20/1249867", Address = "1001 Zokni utca 7.",}
             };
 
             mod.Entity<House>().HasData(Houses);

@@ -18,7 +18,6 @@ namespace A3ZWKY_HFT_2022231.Models
         public string Color { get; set; }
         public int FloorArea { get; set; }
         public string Address { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Person> Persons { get;set; }
 
         public House()
@@ -28,6 +27,17 @@ namespace A3ZWKY_HFT_2022231.Models
         public override string ToString()
         {
             return $"{HouseId} - {Color} - {FloorArea} - {Address}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is House house &&
+                   HouseId == house.HouseId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(HouseId);
         }
     }
 }

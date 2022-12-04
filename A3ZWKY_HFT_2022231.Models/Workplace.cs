@@ -18,7 +18,6 @@ namespace A3ZWKY_HFT_2022231.Models
         public string Type { get; set; }
         public string TelephoneNumber { get; set; }
         public string Address { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Person> Persons { get; set; }
         public Workplace()
         {
@@ -28,6 +27,16 @@ namespace A3ZWKY_HFT_2022231.Models
         public override string ToString()
         {
             return $"{WorkplaceId} - {Name} - {Type} - {TelephoneNumber} - {Address}";
+        }
+        public override bool Equals(object obj)
+        {
+            return obj is Workplace workplace &&
+                   WorkplaceId == workplace.WorkplaceId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(WorkplaceId);
         }
     }
 }
